@@ -2,15 +2,26 @@ provider "aws" {
   region = var.region
 }
 
-# Fetch the latest Ubuntu AMI in the given region
 data "aws_ami" "ubuntu" {
   most_recent = true
-  owners      = ["099720109477"]  # Owner ID for Ubuntu AMIs
+  owners      = ["099720109477"] # Canonical (Ubuntu)
+
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-*64-generic"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-20.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
   }
 }
+
 
 # Fetch the default VPC in the region
 data "aws_vpc" "default" {
