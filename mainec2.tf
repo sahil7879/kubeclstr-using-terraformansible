@@ -17,7 +17,7 @@ data "aws_subnets" "public" {
 
 # Master Instance
 resource "aws_instance" "master" {
-  ami             = ami-07891c5a242abf4bc
+  ami             = "ami-07891c5a242abf4bc"
   instance_type   = "t3.medium"
   key_name        = var.key_name
   subnet_id       = data.aws_subnets.public.ids[0]
@@ -32,7 +32,7 @@ resource "aws_instance" "master" {
 
 # Worker Instance 1
 resource "aws_instance" "worker1" {
-  ami             = ami-07891c5a242abf4bc
+  ami             = "ami-07891c5a242abf4bc"
   instance_type   = "t3.micro"
   key_name        = var.key_name
   subnet_id       = data.aws_subnets.public.ids[0]
@@ -47,7 +47,7 @@ resource "aws_instance" "worker1" {
 
 # Worker Instance 2
 resource "aws_instance" "worker2" {
-  ami             = ami-07891c5a242abf4bc
+  ami             = "ami-07891c5a242abf4bc"
   instance_type   = "t3.micro"
   key_name        = var.key_name
   subnet_id       = data.aws_subnets.public.ids[0]
