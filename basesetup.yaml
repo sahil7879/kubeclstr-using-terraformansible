@@ -3,6 +3,10 @@
   hosts: all  # This playbook runs on both master and worker nodes
   become: true  # Ensures the tasks are run with root privileges
   tasks:
+    # set hostname as defined in the inventory that is in the actions pipeline 
+    - name: Set hostname to inventory name
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
     # Update the apt package list to ensure the latest packages are fetched
     - name: Update apt package list
       apt:
